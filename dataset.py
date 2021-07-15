@@ -1,7 +1,12 @@
 import cv2
 import numpy as np
 
-from data import create_rect as _create_rect_obj, Image
+from data import (
+    create_rect as _create_rect_obj,
+    Image,
+    Sample,
+    Dataset
+)
 
 
 def _render_rect(
@@ -87,6 +92,25 @@ def create_dataset(
     min_figure_width=None,
     max_figure_width=None,
     num_figures=1,
-    color=(0, 0, 0)
+    color=(0, 0, 0),
 ):
-    pass
+    samples = []
+    for i in range(num_images):
+        img = create_random_image_rect(
+            img_height=img_height,
+            img_width=img_width,
+            min_figure_height=min_figure_height,
+            max_figure_height=max_figure_height,
+            min_figure_width=min_figure_width,
+            max_figure_width=max_figure_width,
+            num_figures=num_figures,
+            color=color,
+        )
+        sample = Sample(
+            id=str(i),
+            img=img.arr,
+            targets=img.figures['rect']
+        )
+        samples.append(sample)
+    dataset = Dataset(samples)
+    return dataset

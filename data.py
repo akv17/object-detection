@@ -32,6 +32,7 @@ def create_rect(y_min, y_max, x_min, x_max, label='rect'):
         x_center=int(x_center),
         height=int(height),
         width=int(width),
+        label=label
     )
     return obj
 
@@ -45,3 +46,21 @@ class Image:
 
     def add_figure(self, obj):
         self.figures.setdefault(obj.label, []).append(obj)
+
+
+@dataclass
+class Sample:
+    id: str
+    img: Any = field(repr=False)
+    targets: list = field(repr=False)
+
+
+@dataclass(repr=False)
+class Dataset:
+    samples: list
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __iter__(self):
+        return iter(self.samples)
