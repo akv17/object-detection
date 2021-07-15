@@ -52,8 +52,8 @@ def create_random_image_rect(
         min_figure_height = img_height // 4
         max_figure_height = img_height // 2
     if min_figure_width is None or max_figure_width is None:
-        min_figure_width = img_height // 4
-        max_figure_width = img_height // 2
+        min_figure_width = img_width // 4
+        max_figure_width = img_width // 2
     y_min_border = img_height * 0.25
     y_max_border = img_height - y_min_border
     x_min_border = img_width * 0.25
