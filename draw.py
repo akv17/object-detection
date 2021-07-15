@@ -47,3 +47,12 @@ def draw(calls, fp=None):
     if fp is not None:
         plt.savefig(fp)
         plt.close()
+
+
+def draw_image_obj(img, colors=('r', 'g', 'b', 'y')):
+    calls = [(draw_arr, {'arr': img.arr})]
+    for i, (fig_name, fig_objs) in enumerate(img.figures.items()):
+        color = colors[i % len(colors)]
+        fig_rects = [obj.as_tuple() for obj in fig_objs]
+        calls.append((draw_rects, {'rects': fig_rects, 'color': color}))
+    draw(calls)
