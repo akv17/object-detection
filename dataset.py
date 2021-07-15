@@ -23,7 +23,6 @@ def _render_rect(
     x_max = min(arr_width - 1, rect_x + rect_half_width)
     top_left = (int(x_min), int(y_min))
     bottom_right = (int(x_max), int(y_max))
-    print(top_left, bottom_right)
     cv2.rectangle(arr, top_left, bottom_right, color, thickness=-1)
     obj = _create_rect_obj(
         y_min=y_min,
@@ -75,5 +74,19 @@ def create_random_image_rect(
             rect_x=fig_x,
             color=color
         )
-        img.add_figure(name='rect', obj=figure)
+        img.add_figure(obj=figure)
     return img
+
+
+def create_dataset(
+    num_images=1000,
+    img_height=224,
+    img_width=224,
+    min_figure_height=None,
+    max_figure_height=None,
+    min_figure_width=None,
+    max_figure_width=None,
+    num_figures=1,
+    color=(0, 0, 0)
+):
+    pass

@@ -12,12 +12,13 @@ class Rect:
     width: float
     y_center: float
     x_center: float
+    label: str = None
 
     def as_tuple(self):
         return self.y_min, self.y_max, self.x_min, self.x_max
 
 
-def create_rect(y_min, y_max, x_min, x_max):
+def create_rect(y_min, y_max, x_min, x_max, label='rect'):
     height = y_max - y_min
     width = x_max - x_min
     y_center = (y_max + y_min) / 2
@@ -42,5 +43,5 @@ class Image:
     arr: Any = field(repr=False)
     figures: Any = field(repr=False, default_factory=dict)
 
-    def add_figure(self, name, obj):
-        self.figures.setdefault(name, []).append(obj)
+    def add_figure(self, obj):
+        self.figures.setdefault(obj.label, []).append(obj)
